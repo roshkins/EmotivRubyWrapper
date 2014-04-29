@@ -1,0 +1,65 @@
+have_library: checking for EE_EngineConnect() in -l/usr/lib/edk... -------------------- no
+
+"gcc -o conftest -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0/x86_64-linux -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0/ruby/backward -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/rashi/.rvm/rubies/ruby-2.1.0/lib -Wl,-R/home/rashi/.rvm/rubies/ruby-2.1.0/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/rashi/.rvm/rubies/ruby-2.1.0/lib -L/home/rashi/.rvm/rubies/ruby-2.1.0/lib -lruby  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0/x86_64-linux -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0/ruby/backward -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/rashi/.rvm/rubies/ruby-2.1.0/lib -Wl,-R/home/rashi/.rvm/rubies/ruby-2.1.0/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/rashi/.rvm/rubies/ruby-2.1.0/lib -L/home/rashi/.rvm/rubies/ruby-2.1.0/lib -lruby -l/usr/lib/edk  -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘EE_EngineConnect’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))EE_EngineConnect; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))EE_EngineConnect; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))EE_EngineConnect; return 0; }
+/* end */
+
+"gcc -o conftest -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0/x86_64-linux -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0/ruby/backward -I/home/rashi/.rvm/rubies/ruby-2.1.0/include/ruby-2.1.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/rashi/.rvm/rubies/ruby-2.1.0/lib -Wl,-R/home/rashi/.rvm/rubies/ruby-2.1.0/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/rashi/.rvm/rubies/ruby-2.1.0/lib -L/home/rashi/.rvm/rubies/ruby-2.1.0/lib -lruby -l/usr/lib/edk  -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘EE_EngineConnect’ [-Wimplicit-function-declaration]
+ int t(void) { EE_EngineConnect(); return 0; }
+ ^
+/usr/bin/ld: cannot find -l/usr/lib/edk
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { EE_EngineConnect(); return 0; }
+/* end */
+
+--------------------
+
