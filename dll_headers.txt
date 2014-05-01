@@ -1,0 +1,181 @@
+EMOSTATE_DLL_API void ES_Init(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_GetTimeFromStart(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_GetHeadsetOn(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_GetNumContactQualityChannels(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API EE_EEG_ContactQuality_t ES_GetContactQuality(EmoStateHandle state, int electroIdx);
+
+	
+	
+	EMOSTATE_DLL_API int ES_GetContactQualityFromAllChannels(EmoStateHandle state, EE_EEG_ContactQuality_t* contactQuality, size_t numChannels);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsBlink(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsLeftWink(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsRightWink(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsEyesOpen(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingUp(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingDown(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingLeft(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingRight(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API void ES_ExpressivGetEyelidState(EmoStateHandle state, float* leftEye, float* rightEye);
+
+	
+	
+	EMOSTATE_DLL_API void ES_ExpressivGetEyeLocation(EmoStateHandle state, float* x, float* y);
+
+	
+	
+	EMOSTATE_DLL_API float ES_ExpressivGetEyebrowExtent(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_ExpressivGetSmileExtent(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_ExpressivGetClenchExtent(EmoStateHandle state);
+
+
+	
+	
+	EMOSTATE_DLL_API EE_ExpressivAlgo_t ES_ExpressivGetUpperFaceAction(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_ExpressivGetUpperFaceActionPower(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API EE_ExpressivAlgo_t ES_ExpressivGetLowerFaceAction(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_ExpressivGetLowerFaceActionPower(EmoStateHandle state);
+	
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivIsActive(EmoStateHandle state, EE_ExpressivAlgo_t type);
+
+	
+	
+	EMOSTATE_DLL_API float ES_AffectivGetExcitementLongTermScore(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_AffectivGetExcitementShortTermScore(EmoStateHandle state);
+	
+	
+	
+	EMOSTATE_DLL_API int ES_AffectivIsActive(EmoStateHandle state, EE_AffectivAlgo_t type);
+
+	
+	
+	EMOSTATE_DLL_API float ES_AffectivGetMeditationScore(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_AffectivGetFrustrationScore(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_AffectivGetEngagementBoredomScore(EmoStateHandle state);
+
+	
+	
+	
+	EMOSTATE_DLL_API EE_CognitivAction_t ES_CognitivGetCurrentAction(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API float ES_CognitivGetCurrentActionPower(EmoStateHandle state);
+	
+	
+	
+	EMOSTATE_DLL_API int ES_CognitivIsActive(EmoStateHandle state);
+
+
+	
+	
+	EMOSTATE_DLL_API EE_SignalStrength_t ES_GetWirelessSignalStatus(EmoStateHandle state);
+
+	
+	
+	EMOSTATE_DLL_API void ES_Copy(EmoStateHandle a, EmoStateHandle b);
+
+	
+	
+	EMOSTATE_DLL_API int ES_AffectivEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	
+	EMOSTATE_DLL_API int ES_ExpressivEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	
+	EMOSTATE_DLL_API int ES_CognitivEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	
+	EMOSTATE_DLL_API int ES_EmoEngineEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	
+	EMOSTATE_DLL_API int ES_Equal(EmoStateHandle a, EmoStateHandle b);
+
+	
+	
+	EMOSTATE_DLL_API void ES_GetBatteryChargeLevel(EmoStateHandle state, int* chargeLevel, int* maxChargeLevel);
+
+	
+	
+	EMOSTATE_DLL_API void ES_AffectivGetExcitementShortTermModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+
+	
+	
+	EMOSTATE_DLL_API void ES_AffectivGetMeditationModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+
+	
+	
+	EMOSTATE_DLL_API void ES_AffectivGetEngagementBoredomModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+
+	
+	
+	EMOSTATE_DLL_API void ES_AffectivGetFrustrationModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+

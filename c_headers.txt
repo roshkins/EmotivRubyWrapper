@@ -1,0 +1,107 @@
+EDK_API int
+EE_EngineGetNumUser(unsigned int* pNumUserOut);
+EDK_API int
+EE_SetHardwarePlayerDisplay(unsigned int userId, unsigned int playerNum);
+EDK_API int
+EE_SetUserProfile(unsigned int userId, const unsigned char profileBuffer[], unsigned int length);
+EDK_API int
+EE_GetUserProfile(unsigned int userId, EmoEngineEventHandle hEvent);
+EDK_API int
+EE_GetBaseProfile(EmoEngineEventHandle hEvent);
+EDK_API int
+EE_GetUserProfileSize(EmoEngineEventHandle hEvt, unsigned int* pProfileSizeOut);
+EDK_API int
+EE_GetUserProfileBytes(EmoEngineEventHandle hEvt, unsigned char destBuffer[], unsigned int length);
+EDK_API int
+EE_LoadUserProfile(unsigned int userID, const char* szInputFilename);
+EDK_API int
+EE_SaveUserProfile(unsigned int userID, const char* szOutputFilename);
+EDK_API int
+EE_ExpressivSetThreshold(unsigned int userId, EE_ExpressivAlgo_t algoName, EE_ExpressivThreshold_t thresholdName, int value);
+EDK_API int
+EE_ExpressivGetThreshold(unsigned int userId, EE_ExpressivAlgo_t algoName, EE_ExpressivThreshold_t thresholdName, int *pValueOut);
+EDK_API int
+EE_ExpressivSetTrainingAction(unsigned int userId, EE_ExpressivAlgo_t action);
+EDK_API int
+EE_ExpressivSetTrainingControl(unsigned int userId, EE_ExpressivTrainingControl_t control);
+EDK_API int
+EE_ExpressivGetTrainingAction(unsigned int userId, EE_ExpressivAlgo_t* pActionOut);
+EDK_API int
+EE_ExpressivGetTrainingTime(unsigned int userId, unsigned int* pTrainingTimeOut);
+EDK_API int
+EE_ExpressivGetTrainedSignatureActions(unsigned int userId, unsigned long* pTrainedActionsOut);
+EDK_API int
+EE_ExpressivGetTrainedSignatureAvailable(unsigned int userId, int* pfAvailableOut);
+EDK_API int
+EE_ExpressivSetSignatureType(unsigned int userId, EE_ExpressivSignature_t sigType);
+EDK_API int
+EE_ExpressivGetSignatureType(unsigned int userId, EE_ExpressivSignature_t* pSigTypeOut);
+EDK_API int
+EE_CognitivSetActiveActions(unsigned int userId, unsigned long activeActions);
+EDK_API int
+EE_CognitivGetActiveActions(unsigned int userId, unsigned long* pActiveActionsOut);
+EDK_API int
+EE_CognitivGetTrainingTime(unsigned int userId, unsigned int* pTrainingTimeOut);
+EDK_API int
+EE_CognitivSetTrainingControl(unsigned int userId, EE_CognitivTrainingControl_t control);
+EDK_API int
+EE_CognitivSetTrainingAction(unsigned int userId, EE_CognitivAction_t action);
+EDK_API int
+EE_CognitivGetTrainingAction(unsigned int userId, EE_CognitivAction_t* pActionOut);
+EDK_API int
+EE_CognitivGetTrainedSignatureActions(unsigned int userId, unsigned long* pTrainedActionsOut);
+EDK_API int
+EE_CognitivGetOverallSkillRating(unsigned int userId, float* pOverallSkillRatingOut);
+EDK_API int
+EE_CognitivGetActionSkillRating(unsigned int userId, EE_CognitivAction_t action, float* pActionSkillRatingOut);
+EDK_API int
+EE_CognitivSetActivationLevel(unsigned int userId, int level);
+EDK_API int
+EE_CognitivSetActionSensitivity(unsigned int userId,
+int action1Sensitivity, int action2Sensitivity,
+int action3Sensitivity, int action4Sensitivity);
+EDK_API int
+EE_CognitivGetActivationLevel(unsigned int userId, int *pLevelOut);
+EDK_API int
+EE_CognitivGetActionSensitivity(unsigned int userId,
+int* pAction1SensitivityOut, int* pAction2SensitivityOut,
+int* pAction3SensitivityOut, int* pAction4SensitivityOut);
+EDK_API int
+EE_CognitivStartSamplingNeutral(unsigned int userId);
+EDK_API int
+EE_CognitivStopSamplingNeutral(unsigned int userId);
+EDK_API int
+EE_CognitivSetSignatureCaching(unsigned int userId, unsigned int enabled);
+EDK_API int
+EE_CognitivGetSignatureCaching(unsigned int userId, unsigned int* pEnabledOut);
+EDK_API int
+EE_CognitivSetSignatureCacheSize(unsigned int userId, unsigned int size);
+EDK_API int
+EE_CognitivGetSignatureCacheSize(unsigned int userId, unsigned int* pSizeOut);
+EDK_API int
+EE_HeadsetGetSensorDetails(EE_InputChannels_t channelId, InputSensorDescriptor_t* pDescriptorOut);
+EDK_API int
+EE_HardwareGetVersion(unsigned int userId, unsigned long* pHwVersionOut);
+EDK_API int
+EE_SoftwareGetVersion(char* pszVersionOut, unsigned int nVersionChars, unsigned long* pBuildNumOut);
+EDK_API int
+EE_HeadsetGetGyroDelta(unsigned int userId, int* pXOut, int* pYOut);
+EDK_API int
+EE_HeadsetGyroRezero(unsigned int userId);
+EDK_API OptimizationParamHandle
+EE_OptimizationParamCreate();
+EDK_API void
+EE_OptimizationParamFree(OptimizationParamHandle hParam);
+EDK_API int
+EE_OptimizationEnable(OptimizationParamHandle hParam);
+EDK_API int
+EE_OptimizationIsEnabled(bool* pEnabledOut);
+EDK_API int
+EE_OptimizationDisable();
+EDK_API int
+EE_OptimizationGetParam(OptimizationParamHandle hParam);
+EDK_API int
+EE_OptimizationGetVitalAlgorithm(OptimizationParamHandle hParam, EE_EmotivSuite_t suite, unsigned int* pVitalAlgorithmBitVectorOut);
+EDK_API int
+EE_OptimizationSetVitalAlgorithm(OptimizationParamHandle hParam, EE_EmotivSuite_t suite, unsigned int vitalAlgorithmBitVector);
+EDK_API int EE_ResetDetection(unsigned int userId, EE_EmotivSuite_t suite, unsigned int detectionBitVector);

@@ -1,0 +1,468 @@
+EMOSTATE_DLL_API void ES_Init(EmoStateHandle state);
+
+	
+	/*!
+		If the headset is disconnected from EmoEngine due to low battery or weak
+		wireless signal, the time will be reset to zero.
+
+		\param state - EmoStateHandle
+
+		\return float - time in second
+
+	*/
+	EMOSTATE_DLL_API float ES_GetTimeFromStart(EmoStateHandle state);
+
+	
+	/*!
+		If the headset cannot not be detected on the head, then signal quality will not report
+		any results for all the channels
+
+		\param state - EmoStatehandle
+
+		\return int - (1: On, 0: Off)
+	*/
+	EMOSTATE_DLL_API int	ES_GetHeadsetOn(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+		\return number of channels for which contact quality data is available (int)
+
+		\sa ES_GetNumContactQualityChannels
+	*/
+	EMOSTATE_DLL_API int ES_GetNumContactQualityChannels(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+		\param electroIdx - The index of the electrode for query
+
+		\return EE_EEG_ContactQuality_t - Enumerated value that characterizes the EEG electrode contact for the specified input channel
+
+		\sa ES_GetContactQuality
+	*/
+	EMOSTATE_DLL_API EE_EEG_ContactQuality_t ES_GetContactQuality(EmoStateHandle state, int electroIdx);
+
+	
+	/*!
+		The contact quality will be stored in the array, contactQuality, passed to the function.
+		The value stored in contactQuality[0] is identical to the result returned by
+		ES_GetContactQuality(state, 0)
+		The value stored in contactQuality[1] is identical to the result returned by
+		ES_GetContactQuality(state, 1). etc.
+		The ordering of the array is consistent with the ordering of the logical input
+		channels in EE_InputChannels_enum.
+
+		\param state - EmoStateHandle
+		\param contactQuality - array of 32-bit float of size numChannels
+		\param numChannels - size (number of floats) of the input array
+
+		\return Number of signal quality values copied to the contactQuality array.
+
+		\sa ES_GetContactQualityFromAllChannels
+	*/
+	EMOSTATE_DLL_API int ES_GetContactQualityFromAllChannels(EmoStateHandle state, EE_EEG_ContactQuality_t* contactQuality, size_t numChannels);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return blink status (1: blink, 0: not blink)
+
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsBlink(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return left wink status (1: wink, 0: not wink)
+
+		\sa ES_ExpressivIsRightWink
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsLeftWink(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return right wink status (1: wink, 0: not wink)
+
+		\sa ES_ExpressivIsLeftWink
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsRightWink(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return eye open status (1: eyes open, 0: eyes closed)
+
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsEyesOpen(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return eyes position (1: looking up, 0: not looking up)
+
+		\sa ES_ExpressivIsLookingDown
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingUp(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return eyes position (1: looking down, 0: not looking down)
+
+		\sa ES_ExpressivIsLookingUp
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingDown(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStatehandle
+
+		\return eye position (1: looking left, 0: not looking left)
+
+		\sa ES_ExpressivIsLookingRight
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingLeft(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStatehandle
+
+		\return eye position (1: looking right, 0: not looking right)
+
+		\sa ES_ExpressivIsLookingLeft
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsLookingRight(EmoStateHandle state);
+
+	
+	/*!
+		The left and right eyelid state are stored in the parameter leftEye and rightEye
+		respectively. They are floating point values ranging from 0.0 to 1.0.
+		0.0 indicates that the eyelid is fully opened while 1.0 indicates that the
+		eyelid is fully closed.
+
+		\param state - EmoStatehandle
+		\param leftEye - the left eyelid state (0.0 to 1.0)
+		\param rightEye - the right eyelid state (0.0 to 1.0)
+
+	*/
+	EMOSTATE_DLL_API void ES_ExpressivGetEyelidState(EmoStateHandle state, float* leftEye, float* rightEye);
+
+	
+	/*!
+		The horizontal and vertical position of the eyes are stored in the parameter x and y
+		respectively. They are floating point values ranging from -1.0 to 1.0.
+		
+		For horizontal position, -1.0 indicates that the user is looking left while
+		1.0 indicates that the user is looking right.
+		
+		For vertical position, -1.0 indicates that the user is looking down while
+		1.0 indicatest that the user is looking up.
+
+		This function assumes that both eyes have the same horizontal or vertical positions.
+		(i.e. no cross eyes)
+
+		\param state - EmoStateHandle
+		\param x - the horizontal position of the eyes
+		\param y - the veritcal position of the eyes
+
+	*/
+	EMOSTATE_DLL_API void ES_ExpressivGetEyeLocation(EmoStateHandle state, float* x, float* y);
+
+	
+	/*!
+		\param state - EmoStateHandle
+		
+		\return eyebrow extent value (0.0 to 1.0)
+
+		\sa ES_ExpressivGetUpperFaceAction, ES_ExpressivGetUpperFaceActionPower
+	*/
+	EMOSTATE_DLL_API float ES_ExpressivGetEyebrowExtent(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStatehandle
+		
+		\return smile extent value (0.0 to 1.0)
+
+		\sa ES_ExpressivGetLowerFaceAction, ES_ExpressivGetLowerFaceActionPower
+	*/
+	EMOSTATE_DLL_API float ES_ExpressivGetSmileExtent(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStatehandle
+
+		\return clench extent value (0.0 to 1.0)
+
+		\sa ES_ExpressivGetLowerFaceAction, ES_ExpressivGetLowerFaceActionPower
+	*/
+	EMOSTATE_DLL_API float ES_ExpressivGetClenchExtent(EmoStateHandle state);
+
+
+	
+	/*!
+		\param state - EmoStatehandle
+
+		\return pre-defined Expressiv action types
+
+		\sa ES_ExpressivGetUpperFaceActionPower
+	*/
+	EMOSTATE_DLL_API EE_ExpressivAlgo_t ES_ExpressivGetUpperFaceAction(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStatehandle
+
+		\return power value (0.0 to 1.0)
+
+		\sa ES_ExpressivGetUpperFaceAction
+	*/
+	EMOSTATE_DLL_API float ES_ExpressivGetUpperFaceActionPower(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStatehandle
+
+		\return pre-defined Expressiv action types
+
+		\sa ES_ExpressivGetLowerFaceActionPower
+	*/
+	EMOSTATE_DLL_API EE_ExpressivAlgo_t ES_ExpressivGetLowerFaceAction(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStatehandle
+
+		\return power value (0.0 to 1.0)
+
+		\sa ES_ExpressivGetLowerFaceAction
+	*/
+	EMOSTATE_DLL_API float ES_ExpressivGetLowerFaceActionPower(EmoStateHandle state);
+	
+	
+	/*!
+		\param state - EmoStateHandle
+		\param type  - Expressiv detection type
+
+		\return detection state (0: Not Active, 1: Active)
+
+		\sa EE_ExpressivAlgo_t
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivIsActive(EmoStateHandle state, EE_ExpressivAlgo_t type);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return excitement level (0.0 to 1.0)
+
+		\sa ES_AffectivGetExcitementShortTermScore
+	*/
+	EMOSTATE_DLL_API float ES_AffectivGetExcitementLongTermScore(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return excitement level (0.0 to 1.0)
+
+		\sa ES_AffectivGetExcitementLongTermScore
+	*/
+	EMOSTATE_DLL_API float ES_AffectivGetExcitementShortTermScore(EmoStateHandle state);
+	
+	
+	/*!
+		\param state - EmoStateHandle
+		\param type  - Affectiv detection type
+
+		\return detection state (0: Not Active, 1: Active)
+
+		\sa EE_AffectivAlgo_t
+	*/
+	EMOSTATE_DLL_API int ES_AffectivIsActive(EmoStateHandle state, EE_AffectivAlgo_t type);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return meditation level (0.0 to 1.0)
+	*/
+	EMOSTATE_DLL_API float ES_AffectivGetMeditationScore(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return frustration level (0.0 to 1.0)
+	*/
+	EMOSTATE_DLL_API float ES_AffectivGetFrustrationScore(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return engagement/boredom level (0.0 to 1.0)
+	*/
+	EMOSTATE_DLL_API float ES_AffectivGetEngagementBoredomScore(EmoStateHandle state);
+
+	
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return Cognitiv action type
+
+		\sa EE_CognitivAction_t, ES_CognitivGetCurrentActionPower
+	*/
+	EMOSTATE_DLL_API EE_CognitivAction_t ES_CognitivGetCurrentAction(EmoStateHandle state);
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return Cognitiv action power (0.0 to 1.0)
+
+		\sa ES_CognitivGetCurrentAction
+	*/
+	EMOSTATE_DLL_API float ES_CognitivGetCurrentActionPower(EmoStateHandle state);
+	
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return detection state (0: Not Active, 1: Active)
+	*/
+	EMOSTATE_DLL_API int ES_CognitivIsActive(EmoStateHandle state);
+
+
+	
+	/*!
+		\param state - EmoStateHandle
+
+		\return wireless signal strength [No Signal, Bad, Fair, Good, Excellent].
+
+		\sa EE_SignalStrength_t
+	*/
+	EMOSTATE_DLL_API EE_SignalStrength_t ES_GetWirelessSignalStatus(EmoStateHandle state);
+
+	
+	/*!
+		\param a - Destination of EmoStateHandle
+		\param b - Source of EmoStateHandle
+
+		\sa ES_Create
+	*/
+	EMOSTATE_DLL_API void ES_Copy(EmoStateHandle a, EmoStateHandle b);
+
+	
+	/*!
+		\param a - EmoStateHandle
+		\param b - EmoStateHandle
+
+		\return 1: Equal, 0: Different
+
+		\sa ES_ExpressivEqual, ES_CognitivEqual, ES_EmoEngineEqual, ES_Equal
+	*/
+	EMOSTATE_DLL_API int ES_AffectivEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	/*!
+		\param a - EmoStateHandle
+		\param b - EmoStateHandle
+
+		\return 1: Equal, 0: Different
+
+		\sa ES_AffectivEqual, ES_CognitivEqual, ES_EmoEngineEqual, ES_Equal
+	*/
+	EMOSTATE_DLL_API int ES_ExpressivEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	/*!
+		\param a - EmoStateHandle
+		\param b - EmoStateHandle
+
+		\return 1: Equal, 0: Different
+
+		\sa ES_AffectivEqual, ES_ExpressivEqual, ES_EmoEngineEqual, ES_Equal
+	*/
+	EMOSTATE_DLL_API int ES_CognitivEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	/*!
+		This function is comparing the time since EmoEngine start,
+		the wireless signal strength and the signal quality of different channels
+
+		\param a - EmoStateHandle
+		\param b - EmoStateHandle
+
+		\return 1: Equal, 0: Different
+
+		\sa ES_AffectivEqual, ES_ExpressivEqual, ES_CognitivEqual, ES_Equal
+	*/
+	EMOSTATE_DLL_API int ES_EmoEngineEqual(EmoStateHandle a, EmoStateHandle b);
+
+	
+	/*!
+		\param a - EmoStateHandle
+		\param b - EmoStateHandle
+
+		\return 1: Equal, 0: Different
+
+		\sa ES_AffectivEqual, ES_ExpressivEqual, ES_EmoEngineEqual
+	*/
+	EMOSTATE_DLL_API int ES_Equal(EmoStateHandle a, EmoStateHandle b);
+
+	
+	/*!
+		\param state			- EmoStateHandle
+		\param chargeLevel		- the current level of charge in the headset battery
+		\param maxChargeLevel	- the maximum level of charge in the battery
+
+	*/
+	EMOSTATE_DLL_API void ES_GetBatteryChargeLevel(EmoStateHandle state, int* chargeLevel, int* maxChargeLevel);
+
+	
+	/*!
+		\param state                - EmoStateHandle
+				rawScore             - return raw score
+				minScale, maxScale   - return scale range
+		\sa ES_AffectivGetExcitementShortTermModelParams
+	*/
+	EMOSTATE_DLL_API void ES_AffectivGetExcitementShortTermModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+
+	
+	/*!
+		\param state                - EmoStateHandle
+				rawScore             - return raw score
+				minScale, maxScale   - return scale range
+		\sa ES_AffectivGetMeditationModelParams
+	*/
+	EMOSTATE_DLL_API void ES_AffectivGetMeditationModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+
+	
+	/*!
+		\param state                - EmoStateHandle
+				rawScore             - return raw score
+				minScale, maxScale   - return scale range
+		\sa ES_AffectivGetEngagementBoredomModelParams
+	*/
+	EMOSTATE_DLL_API void ES_AffectivGetEngagementBoredomModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+
+	
+	/*!
+		\param state                - EmoStateHandle
+				rawScore             - return raw score
+				minScale, maxScale   - return scale range
+		\sa ES_AffectivGetFrustrationModelParams
+	*/
+	EMOSTATE_DLL_API void ES_AffectivGetFrustrationModelParams(EmoStateHandle state, double* rawScore, double* minScale, double* maxScale);
+
+/*};*/

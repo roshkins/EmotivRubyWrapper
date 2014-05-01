@@ -6,6 +6,7 @@
         <in>Emotiv.c</in>
       </df>
       <in>EmotivSDK.rb</in>
+      <in>esdll_headers.txt</in>
     </df>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -13,6 +14,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>c_headers.txt</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
@@ -45,6 +47,10 @@
         </makeTool>
       </makefileType>
       <item path="EmotivSDK.rb" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="c_headers.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="esdll_headers.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ext/Emotiv.c" ex="false" tool="0" flavor2="0">
       </item>

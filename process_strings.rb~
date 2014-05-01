@@ -1,0 +1,22 @@
+lines = File.readlines("./c_headers.txt").map{|line| line.strip}.join(" ").split(";");
+statements = lines.map do |line|
+	m = line.match(/EDK_API (\b\w+\b) (EE_\w+)\((.+)*\)/)
+	types = m[3].to_s.split(",").map do |argument|
+		type = argument.split(" ")[0...-1].map{|word| word.strip}
+		retval = ""
+		if /\*/ =~ type.join(" ")
+			retval = "pointer"
+		elsif /unsigned/ =~ type[0]
+			retval = "u_"
+			type.shift
+			retval += type.shift
+		end
+		retval.empty? ? "" : ":" + retval
+	end.select{|arg| !arg.empty?}.join(",")
+	
+	"attach_function :#{m[2]}, [#{types}], :#{m[1]}"
+end
+
+File.write( "./ruby_headers.txt", statements.join("\n"))
+			
+
