@@ -28,11 +28,74 @@ The code is very simple currently. You make a new instance of EmotivSDK::Engine 
 
 This block will run everytime there is a new event. It returns an event object. Return false from the block to properly quit the application.
 
+Example in the ./EmotivSDK.rb file.
+
 
 API
 ===
 
-It currently supports just the basics of the api. It does not currently allow the program to train automatically. It's possible to do this in the future, but I wanted to get the core features done for the hackathon.
+It currently supports just the basics of the api. It does not currently allow the program to train automatically, as well as many other omitted features. It's possible to do this in the future, but I wanted to get the core features done for the hackathon.
 
 `event.blinked?` `event.left_winked?` `event.right_winked?` `event.looked_left?` `event.looked_right?`
+
+These are all part of the Expressiv suite and return true if the action happened during this event and false if it didn't happen.
+
+The possible face actions are:
+    `:EXP_NEUTRAL,`    
+    `:EXP_BLINK,`      
+    `:EXP_WINK_LEFT,`  
+    `:EXP_WINK_RIGHT, `
+    `:EXP_HORIEYE,`
+    `:EXP_EYEBROW, `   
+    `:EXP_FURROW,   `  
+    `:EXP_SMILE,  `
+    `:EXP_CLENCH, `
+    `:EXP_LAUGH,     ` 
+    `:EXP_SMIRK_LEFT, `
+    `:EXP_SMIRK_RIGHT`
+
+`event.upper_face_action`
+This returns either nil or a symbol representing one of the possible upper face actions (part of the face actions listed above). 
+
+`event.lower_face_action`
+This returns either nil or a symbol representing one of the possible lower face actions (part of the face actions listed above). 
+
+`event.upper_face_action_power`
+This returns the power level of the upper face action.
+
+`event.lower_face_action_power`
+This returns the power level of the lower face action.
+
+`event.excitement_short_term_score`
+This returns the excitement short term score.
+
+`event.excitement_long_term_score`
+This returns the excitement long term score.
+
+`event.engagement_boredom_score`
+This returns the boredom score.
+
+Cognitiv Actions:
+`:COG_NEUTRAL,`   
+`:COG_PUSH,`      
+`:COG_PULL,`      
+`:COG_LIFT,`         
+`:COG_DROP	,`       
+`:COG_LEFT, `       
+`:COG_RIGHT,`       
+`:COG_ROTATE_LEFT,`
+`:COG_ROTATE_RIGHT,` 
+`:COG_ROTATE_CLOCKWISE,` 
+`:COG_ROTATE_COUNTER_CLOCKWISE,`
+`:COG_ROTATE_FORWARDS,`  
+`:COG_ROTATE_REVERSE,`   
+`:COG_DISAPPEAR,`    
+
+`event.cognitiv_action`
+This returns one of the above Cognitiv actions.
+
+`event.cognitiv_action_power`
+This returns the power level of the cognitiv action.
+
+
 
