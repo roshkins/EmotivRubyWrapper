@@ -392,6 +392,11 @@ module EmotivSDK
     
     def cognitiv_action
       @emo_cognitiv_action ||= self.ES_CognitivGetCurrentAction(@e_state)
+      if @emo_cognitiv_action == 0
+        nil
+      else
+        @emo_cognitiv_action
+      end
     end
     
     def cognitiv_action_power
@@ -440,16 +445,23 @@ module EmotivSDK
   end
 end
 
-EmotivSDK::Engine.new(true) do |event|
-  puts event.event_type
-  puts event.emo_state
-  puts event.emo_time_from_start
-  
-  puts "You have #{event.blinked? ? '' : 'not '}blinked."
-  puts "You have #{event.left_winked? ? '' : 'not '}left winked."
-  puts "You have #{event.right_winked? ? '' : 'not '}right winked."
-  puts "You have #{event.looked_left? ? '' : 'not '}looked_left."
-  puts "You have #{event.looked_right? ? '' : 'not '}looked_right."
-  puts "Your upperface action is: #{event.upper_face_action}."
-  puts "Your upperface power level: #{event.upper_face_action_power}"
+if __FILE__ == $0
+  EmotivSDK::Engine.new(true) do |event|
+    puts event.event_type
+    puts event.emo_state
+    puts event.emo_time_from_start
+
+    puts "You have #{event.blinked? ? '' : 'not '}blinked."
+    puts "You have #{event.left_winked? ? '' : 'not '}left winked."
+    puts "You have #{event.right_winked? ? '' : 'not '}right winked."
+    puts "You have #{event.looked_left? ? '' : 'not '}looked_left."
+    puts "You have #{event.looked_right? ? '' : 'not '}looked_right."
+    puts "Your upperface action is: #{event.upper_face_action}."
+    puts "Your upperface power level: #{event.upper_face_action_power}"
+    puts "Your lowerface action is: #{event.lower_face_action}"
+    puts "Your lowerface power level: #{event.lower_face_action_power}"
+
+    puts "Your cognitiv action is: #{event.cognitiv_action}"
+  end
+
 end
